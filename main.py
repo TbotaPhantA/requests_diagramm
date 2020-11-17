@@ -1,13 +1,12 @@
-import time
-from typing import Optional
 from fastapi import FastAPI
-from pydantic import BaseModel
-import datetime
+from starlette.middleware.cors import CORSMiddleware
+
 import json
 
 from clickhouse_driver import Client
 
 app = FastAPI()
+app.add_middleware(CORSMiddleware, allow_origins=["*"])
 
 
 @app.get("/data_for_graph")
