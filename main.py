@@ -7,11 +7,11 @@ from clickhouse_driver import Client
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
+client = Client('52.29.95.195')
 
 
 @app.get("/data_for_graph")
 def read_item(url_pattern, start_date, end_date):
-    client = Client('52.29.95.195')
 
     result = client.execute(
         "SELECT toDate(time) as date, COUNT(url_pattern) as quantity "
