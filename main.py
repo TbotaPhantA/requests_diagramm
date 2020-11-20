@@ -2,6 +2,8 @@ from fastapi import FastAPI, Response
 from starlette.middleware.cors import CORSMiddleware
 import json
 from clickhouse_driver import Client
+from .adresses import db_address
+
 
 app = FastAPI()
 origins = [
@@ -12,7 +14,7 @@ app.add_middleware(CORSMiddleware,
                    allow_credentials=True,
                    allow_methods=["GET"],
                    allow_headers=["*"], )
-client = Client('52.29.95.195')
+client = Client(db_address)
 
 
 @app.get("/data_for_graph")
