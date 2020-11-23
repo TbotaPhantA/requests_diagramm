@@ -1,7 +1,17 @@
-* {
-  margin: 0;
-}
-
 .App {
   background-color: #2E2F36;
+  min-height: 100vh;
+}
+
+.main_container {
+  background-color: white;
+  min-height: 100vh;
+  box-shadow: 10px 10px 100px black;
+  text-align: center;
+}
+
+.main_row {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px;
 }

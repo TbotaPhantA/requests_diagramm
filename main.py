@@ -2,7 +2,7 @@ from fastapi import FastAPI, Response
 from starlette.middleware.cors import CORSMiddleware
 import json
 from clickhouse_driver import Client
-from .adresses import db_address
+from adresses import db_address
 
 
 app = FastAPI()
@@ -31,3 +31,8 @@ def get_quantity_of_urls(url_pattern: str, start_date: str, end_date: str):
     for item in result:
         list_of_dicts.append({"date": str(item[0]), "quantity": int(item[1])})
     return Response(content=json.dumps(list_of_dicts), media_type="application/json")
+
+
+@app.get('/')
+def check():
+    return 'FINE!'
