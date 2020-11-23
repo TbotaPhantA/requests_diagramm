@@ -1,1 +1,1 @@
-db_address = '52.29.95.195'
+db_address = 'localhost'
