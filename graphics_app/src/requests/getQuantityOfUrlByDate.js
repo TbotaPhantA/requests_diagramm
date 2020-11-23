@@ -3,14 +3,9 @@ import axios from "./axios";
 function getQuantityUrl() {
     let start_date = document.getElementById('start_date').value;
     let end_date = document.getElementById('end_date').value;
-    let url_pattern = document.getElementById('standard-basic').value;
+    let url_pattern = document.getElementById('combo-box-demo').value;
     console.log(url_pattern, start_date, end_date);
     return `data_for_graph?url_pattern=${url_pattern}&start_date=${start_date}&end_date=${end_date}`;
-}
-
-
-async function get_json() {
-    return await axios.get(getQuantityUrl());
 }
 
 async function get_data_for_graph() {

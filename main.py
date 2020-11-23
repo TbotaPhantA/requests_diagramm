@@ -18,7 +18,7 @@ client = Client(db_address)
 
 
 @app.get("/data_for_graph")
-def get_quantity_of_urls(url_pattern: str, start_date: str, end_date: str):
+def get_quantity_of_urls(url_pattern: str, start_date: str, end_date: str) -> Response:
 
     result = client.execute(
         "SELECT toDate(time) as date, COUNT(url_pattern) as quantity "
@@ -30,6 +30,20 @@ def get_quantity_of_urls(url_pattern: str, start_date: str, end_date: str):
     list_of_dicts = []
     for item in result:
         list_of_dicts.append({"date": str(item[0]), "quantity": int(item[1])})
+    return Response(content=json.dumps(list_of_dicts), media_type="application/json")
+
+
+@app.get('/unique_url_patterns')
+def get_url_pattrens(beginning: str) -> Response:
+    result = client.execute(
+        "SELECT DISTINCT url_pattern FROM flypost.flypost_log "
+        "WHERE ilike(url_pattern, '{}%') "
+        "LIMIT 20 ".format(beginning))
+
+    list_of_dicts = []
+    for item in result:
+        list_of_dicts.append({"url_pattern": item[0]})
+
     return Response(content=json.dumps(list_of_dicts), media_type="application/json")
 
 
