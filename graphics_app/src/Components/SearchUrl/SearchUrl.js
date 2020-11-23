@@ -32,7 +32,7 @@ function SearchUrl() {
                 options={searchResults}
                 getOptionLabel={(option) => option}
                 style={{width: 300}}
-                renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" onChange={handleChange} />}
+                renderInput={(params) => <TextField {...params} label="Url..." variant="outlined" onChange={handleChange} />}
             />
 
             {/*<TextField id="standard-basic"*/}
